@@ -126,11 +126,17 @@ function () {
 
     this.data = data;
     this.temp = [];
-    console.log(this);
     return this;
   }
 
   _createClass(LilQL, [{
+    key: "each",
+    value: function each(cb) {
+      for (var _i = 0; _i < this.data.length; _i++) {
+        cb(this.data[_i], _i, this.data);
+      }
+    }
+  }, {
     key: "reset",
     value: function reset() {
       this.temp = [];
@@ -141,9 +147,7 @@ function () {
       var _this = this;
 
       return new Promise(function (resolve, reject) {
-        if (_this.data.length === 0) reject(_this.data);
-
-        _this.data.forEach(function (obj) {
+        _this.each(function (obj) {
           if (obj[key] === val) _this.temp.push(obj);
         });
 
@@ -157,10 +161,8 @@ function () {
     value: function includes(key, val) {
       var _this2 = this;
 
-      return new Promise(function (resolve, reject) {
-        if (_this2.data.length === 0) reject(_this2.data);
-
-        _this2.data.forEach(function (obj) {
+      return new Promise(function (resolve) {
+        _this2.each(function (obj) {
           var str = obj[key].toLowerCase();
           if (str.includes(val)) _this2.temp.push(obj);
         });
@@ -176,10 +178,9 @@ function () {
       var _this3 = this;
 
       return new Promise(function (resolve, reject) {
-        if (_this3.data.length === 0) reject(_this3.data);
         _this3.temp = _this3.data;
 
-        _this3.data.forEach(function (obj, i) {
+        _this3.each(function (obj) {
           var str = obj[key].toLowerCase();
           if (str.includes(val)) _this3.temp.splice(i, 1);
         });
@@ -260,20 +261,19 @@ var people = new _index.default(data); // people
 //   .catch(err => {
 //     throw new Error(err)
 //   })
-// people
-//   .includes('name', 'jo')
+
+people.includes('name', 'jo').then(function (result) {
+  console.log(result);
+}).catch(function (err) {
+  throw new Error(err);
+}); // people
+//   .except('name', 'jo')
 //   .then(result => {
 //     console.log(result)
 //   })
 //   .catch(err => {
 //     throw new Error(err)
 //   })
-
-people.except('name', 'jo').then(function (result) {
-  console.log(result);
-}).catch(function (err) {
-  throw new Error(err);
-});
 },{"./../src/index.js":"../src/index.js"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -301,7 +301,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60814" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61896" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

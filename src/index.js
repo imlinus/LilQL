@@ -3,8 +3,13 @@ class LilQL {
     this.data = data
     this.temp = []
 
-    console.log(this)
     return this
+  }
+
+  each (cb) {
+    for (let i = 0; i < this.data.length; i++) {
+      cb(this.data[i], i, this.data)
+    }
   }
 
   reset () {
@@ -13,9 +18,7 @@ class LilQL {
 
   where (key, val) {
     return new Promise((resolve, reject) => {
-      if (this.data.length === 0) reject(this.data)
-
-      this.data.forEach(obj => {
+      this.each(obj => {
         if (obj[key] === val) this.temp.push(obj)
       })
 
@@ -25,10 +28,8 @@ class LilQL {
   }
 
   includes (key, val) {
-    return new Promise((resolve, reject) => {
-      if (this.data.length === 0) reject(this.data)
-
-      this.data.forEach(obj => {
+    return new Promise(resolve => {
+      this.each(obj => {
         const str = obj[key].toLowerCase()
         if (str.includes(val)) this.temp.push(obj)
       })
@@ -40,11 +41,9 @@ class LilQL {
 
   except (key, val) {
     return new Promise((resolve, reject) => {
-      if (this.data.length === 0) reject(this.data)
-
       this.temp = this.data
 
-      this.data.forEach((obj, i) => {
+      this.each(obj => {
         const str = obj[key].toLowerCase()
         if (str.includes(val)) this.temp.splice(i, 1)
       })
