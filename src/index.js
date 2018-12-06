@@ -37,6 +37,22 @@ class LilQL {
       this.reset()
     })
   }
+
+  except (key, val) {
+    return new Promise((resolve, reject) => {
+      if (this.data.length === 0) reject(this.data)
+
+      this.temp = this.data
+
+      this.data.forEach((obj, i) => {
+        const str = obj[key].toLowerCase()
+        if (str.includes(val)) this.temp.splice(i, 1)
+      })
+
+      resolve(this.temp)
+      this.reset()
+    })
+  }
 }
 
 export default LilQL
