@@ -7,9 +7,7 @@ class LilQL {
   }
 
   each (cb) {
-    for (let i = 0; i < this.data.length; i++) {
-      cb(this.data[i], i, this.data)
-    }
+    this.data.forEach((obj, i) => cb(obj, i))
   }
 
   reset () {

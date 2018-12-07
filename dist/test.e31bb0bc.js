@@ -132,9 +132,9 @@ function () {
   _createClass(LilQL, [{
     key: "each",
     value: function each(cb) {
-      for (var _i = 0; _i < this.data.length; _i++) {
-        cb(this.data[_i], _i, this.data);
-      }
+      this.data.forEach(function (obj, i) {
+        return cb(obj, i);
+      });
     }
   }, {
     key: "reset",
@@ -326,7 +326,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63971" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59960" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
