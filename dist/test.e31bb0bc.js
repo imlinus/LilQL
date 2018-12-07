@@ -195,11 +195,9 @@ function () {
     value: function sort(key, val) {
       var _this4 = this;
 
-      return new Promise(function (resolve, reject) {
-        if (val === 'asc') resolve(_this4.data.sort(function (a, b) {
-          return a[key] - b[key];
-        }));else if (val === 'desc') resolve(_this4.data.sort(function (a, b) {
-          return b[key] - a[key];
+      return new Promise(function (resolve) {
+        return resolve(_this4.data.sort(function (a, b) {
+          return val === 'asc' ? a[key] - b[key] : b[key] - a[key];
         }));
       });
     }
@@ -208,8 +206,8 @@ function () {
     value: function limit(lng) {
       var _this5 = this;
 
-      return new Promise(function (resolve, reject) {
-        resolve(_this5.data.slice(0, lng));
+      return new Promise(function (resolve) {
+        return resolve(_this5.data.slice(0, lng));
       });
     }
   }]);
@@ -337,7 +335,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61239" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62481" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

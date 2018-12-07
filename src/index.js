@@ -48,16 +48,11 @@ class LilQL {
   }
 
   sort (key, val) {
-    return new Promise((resolve, reject) => {
-      if (val === 'asc') resolve(this.data.sort((a, b) => a[key] - b[key]))
-      else if (val === 'desc') resolve(this.data.sort((a, b) => b[key] - a[key]))
-    })
+    return new Promise(resolve => resolve(this.data.sort((a, b) => val === 'asc' ? (a[key] - b[key]) : (b[key] - a[key]))))
   }
 
   limit (lng) {
-    return new Promise((resolve, reject) => {
-      resolve(this.data.slice(0, lng))
-    })
+    return new Promise(resolve => resolve(this.data.slice(0, lng)))
   }
 }
 
