@@ -190,6 +190,22 @@ function () {
         _this3.reset();
       });
     }
+  }, {
+    key: "sort",
+    value: function sort(key, val) {
+      var _this4 = this;
+
+      return new Promise(function (resolve, reject) {
+        _this4.temp = _this4.data;
+        if (val === 'asc') resolve(_this4.temp.sort(function (a, b) {
+          return a[key] - b[key];
+        }));else if (val === 'desc') resolve(_this4.temp.sort(function (a, b) {
+          return b[key] - a[key];
+        }));
+
+        _this4.reset();
+      });
+    }
   }]);
 
   return LilQL;
@@ -261,12 +277,15 @@ var people = new _index.default(data); // people
 //   .catch(err => {
 //     throw new Error(err)
 //   })
-
-people.includes('name', 'jo').then(function (result) {
-  console.log(result);
-}).catch(function (err) {
-  throw new Error(err);
-}); // people
+// people
+//   .includes('name', 'jo')
+//   .then(result => {
+//     console.log(result)
+//   })
+//   .catch(err => {
+//     throw new Error(err)
+//   })
+// people
 //   .except('name', 'jo')
 //   .then(result => {
 //     console.log(result)
@@ -274,6 +293,12 @@ people.includes('name', 'jo').then(function (result) {
 //   .catch(err => {
 //     throw new Error(err)
 //   })
+
+people.sort('age', 'asc').then(function (result) {
+  console.log(result);
+}).catch(function (err) {
+  throw new Error(err);
+});
 },{"./../src/index.js":"../src/index.js"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -301,7 +326,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61896" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63971" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

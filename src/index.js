@@ -52,6 +52,17 @@ class LilQL {
       this.reset()
     })
   }
+
+  sort (key, val) {
+    return new Promise((resolve, reject) => {
+      this.temp = this.data
+      
+      if (val === 'asc') resolve(this.temp.sort((a, b) => a[key] - b[key]))
+      else if (val === 'desc') resolve(this.temp.sort((a, b) => b[key] - a[key]))
+
+      this.reset()
+    })
+  }
 }
 
 export default LilQL

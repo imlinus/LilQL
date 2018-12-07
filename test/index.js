@@ -26,14 +26,14 @@ const people = new LilQL(data)
 //     throw new Error(err)
 //   })
 
-people
-  .includes('name', 'jo')
-  .then(result => {
-    console.log(result)
-  })
-  .catch(err => {
-    throw new Error(err)
-  })
+// people
+//   .includes('name', 'jo')
+//   .then(result => {
+//     console.log(result)
+//   })
+//   .catch(err => {
+//     throw new Error(err)
+//   })
 
 // people
 //   .except('name', 'jo')
@@ -43,3 +43,12 @@ people
 //   .catch(err => {
 //     throw new Error(err)
 //   })
+
+people
+  .sort('age', 'asc')
+  .then(result => {
+    console.log(result)
+  })
+  .catch(err => {
+    throw new Error(err)
+  })
