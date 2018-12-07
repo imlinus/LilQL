@@ -17,8 +17,8 @@ people
 ```
 
 ### API
-`where` = exact match
-`includes` = string includes
-`except` = everything but
+- `where` = exact match
+- `includes` = string includes
+- `except` = everything but
 
 Insperation from https://github.com/eko3alpha/JSQL, but I wanted promises
