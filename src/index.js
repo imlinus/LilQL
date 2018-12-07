@@ -19,7 +19,6 @@ class LilQL {
       this.each(obj => {
         if (obj[key] === val) this.temp.push(obj)
       })
-
       resolve(this.temp)
       this.reset()
     })
@@ -31,7 +30,6 @@ class LilQL {
         const str = obj[key].toLowerCase()
         if (str.includes(val)) this.temp.push(obj)
       })
-
       resolve(this.temp)
       this.reset()
     })
@@ -40,12 +38,10 @@ class LilQL {
   except (key, val) {
     return new Promise((resolve, reject) => {
       this.temp = this.data
-
       this.each(obj => {
         const str = obj[key].toLowerCase()
         if (str.includes(val)) this.temp.splice(i, 1)
       })
-
       resolve(this.temp)
       this.reset()
     })
@@ -53,12 +49,14 @@ class LilQL {
 
   sort (key, val) {
     return new Promise((resolve, reject) => {
-      this.temp = this.data
-      
-      if (val === 'asc') resolve(this.temp.sort((a, b) => a[key] - b[key]))
-      else if (val === 'desc') resolve(this.temp.sort((a, b) => b[key] - a[key]))
+      if (val === 'asc') resolve(this.data.sort((a, b) => a[key] - b[key]))
+      else if (val === 'desc') resolve(this.data.sort((a, b) => b[key] - a[key]))
+    })
+  }
 
-      this.reset()
+  limit (lng) {
+    return new Promise((resolve, reject) => {
+      resolve(this.data.slice(0, lng))
     })
   }
 }

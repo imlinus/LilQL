@@ -52,3 +52,12 @@ people
   .catch(err => {
     throw new Error(err)
   })
+
+people
+  .limit(5)
+  .then(result => {
+    console.log(result)
+  })
+  .catch(err => {
+    throw new Error(err)
+  })
