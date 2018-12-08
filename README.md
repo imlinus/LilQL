@@ -36,6 +36,6 @@ people
 - `orderBy` = asc or desc
 - `limit` = any number
 
-Insperation from https://github.com/eko3alpha/JSQL
+Insperation from https://github.com/eko3alpha/JSQL, but this one is like `700 bytes`
 
 Cheers
