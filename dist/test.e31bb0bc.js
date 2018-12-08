@@ -129,13 +129,6 @@ function () {
   }
 
   _createClass(LilQL, [{
-    key: "each",
-    value: function each(cb) {
-      this.data.forEach(function (obj, i) {
-        return cb(obj, i);
-      });
-    }
-  }, {
     key: "where",
     value: function where(key, val) {
       this.data = this.data.filter(function (obj) {
@@ -148,6 +141,14 @@ function () {
     value: function includes(key, val) {
       this.data = this.data.filter(function (obj) {
         return obj[key].toLowerCase().indexOf(val) >= 0;
+      });
+      return this;
+    }
+  }, {
+    key: "except",
+    value: function except(key, val) {
+      this.data = this.data.filter(function (obj) {
+        return obj[key].toLowerCase().indexOf(val) === -1;
       });
       return this;
     }
@@ -176,18 +177,7 @@ function () {
   return LilQL;
 }();
 
-var _default = LilQL; // except (key, val) {
-//   return new Promise((resolve, reject) => {
-//     this.temp = this.data
-//     this.each((obj, i) => {
-//       const str = obj[key].toLowerCase()
-//       if (str.includes(val)) this.temp.splice(i, 1)
-//     })
-//     resolve(this.temp)
-//     this.reset()
-//   })
-// }
-
+var _default = LilQL;
 exports.default = _default;
 },{}],"index.js":[function(require,module,exports) {
 "use strict";
@@ -278,7 +268,7 @@ var people = new _index.default(data); // people
 //     throw new Error(err)
 //   })
 
-people.includes('name', 'jo').orderBy('age', 'asc').limit(2).then(function (res) {
+people.except('name', 'jo').then(function (res) {
   console.log(res);
 }); // console.log(sorted)
 },{"./../src/index.js":"../src/index.js"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
@@ -308,7 +298,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51587" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53661" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

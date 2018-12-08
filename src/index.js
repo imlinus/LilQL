@@ -4,10 +4,6 @@ class LilQL {
     return this
   }
 
-  each (cb) {
-    this.data.forEach((obj, i) => cb(obj, i))
-  }
-
   where (key, val) {
     this.data = this.data.filter(obj => obj[key] === val)
     return this
@@ -15,6 +11,11 @@ class LilQL {
 
   includes (key, val) {
     this.data = this.data.filter(obj => obj[key].toLowerCase().indexOf(val) >= 0)
+    return this
+  }
+
+  except (key, val) {
+    this.data = this.data.filter(obj => obj[key].toLowerCase().indexOf(val) === -1)
     return this
   }
 
@@ -35,15 +36,3 @@ class LilQL {
 }
 
 export default LilQL
-
-// except (key, val) {
-//   return new Promise((resolve, reject) => {
-//     this.temp = this.data
-//     this.each((obj, i) => {
-//       const str = obj[key].toLowerCase()
-//       if (str.includes(val)) this.temp.splice(i, 1)
-//     })
-//     resolve(this.temp)
-//     this.reset()
-//   })
-// }

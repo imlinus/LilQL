@@ -54,9 +54,7 @@ const people = new LilQL(data)
 //   })
 
 people
-  .includes('name', 'jo')
-  .orderBy('age', 'asc')
-  .limit(2)
+  .except('name', 'jo')
   .then(res => { 
     console.log(res)
   })
