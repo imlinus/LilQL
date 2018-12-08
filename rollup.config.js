@@ -1,4 +1,5 @@
 import buble from 'rollup-plugin-buble'
+import uglify from 'rollup-plugin-uglify-es'
 import pkg from './package.json'
 
 export default [{
@@ -11,5 +12,17 @@ export default [{
     buble({
       exclude: ['node_modules/**']
     })
+  ]
+}, {
+  entry: 'src/index.js',
+  targets: [{
+    dest: pkg.min,
+    format: 'cjs'
+  }],
+  plugins: [
+    buble({
+      exclude: ['node_modules/**']
+    }),
+    uglify()
   ]
 }]
