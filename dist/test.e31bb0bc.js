@@ -125,7 +125,6 @@ function () {
     _classCallCheck(this, LilQL);
 
     this.data = data;
-    this.temp = [];
     return this;
   }
 
@@ -137,85 +136,58 @@ function () {
       });
     }
   }, {
-    key: "reset",
-    value: function reset() {
-      this.temp = [];
-    }
-  }, {
     key: "where",
     value: function where(key, val) {
-      var _this = this;
-
-      return new Promise(function (resolve, reject) {
-        _this.each(function (obj) {
-          if (obj[key] === val) _this.temp.push(obj);
-        });
-
-        resolve(_this.temp);
-
-        _this.reset();
+      this.data = this.data.filter(function (obj) {
+        return obj[key] === val;
       });
+      return this;
     }
   }, {
     key: "includes",
     value: function includes(key, val) {
-      var _this2 = this;
-
-      return new Promise(function (resolve) {
-        _this2.each(function (obj) {
-          var str = obj[key].toLowerCase();
-          if (str.includes(val)) _this2.temp.push(obj);
-        });
-
-        resolve(_this2.temp);
-
-        _this2.reset();
+      this.data = this.data.filter(function (obj) {
+        return obj[key].toLowerCase().indexOf(val) >= 0;
       });
+      return this;
     }
   }, {
-    key: "except",
-    value: function except(key, val) {
-      var _this3 = this;
-
-      return new Promise(function (resolve, reject) {
-        _this3.temp = _this3.data;
-
-        _this3.each(function (obj) {
-          var str = obj[key].toLowerCase();
-          if (str.includes(val)) _this3.temp.splice(i, 1);
-        });
-
-        resolve(_this3.temp);
-
-        _this3.reset();
+    key: "orderBy",
+    value: function orderBy(key, val) {
+      this.data.sort(function (a, b) {
+        return val === 'asc' ? a[key] - b[key] : b[key] - a[key];
       });
-    }
-  }, {
-    key: "sort",
-    value: function sort(key, val) {
-      var _this4 = this;
-
-      return new Promise(function (resolve) {
-        return resolve(_this4.data.sort(function (a, b) {
-          return val === 'asc' ? a[key] - b[key] : b[key] - a[key];
-        }));
-      });
+      return this;
     }
   }, {
     key: "limit",
     value: function limit(lng) {
-      var _this5 = this;
-
-      return new Promise(function (resolve) {
-        return resolve(_this5.data.slice(0, lng));
-      });
+      this.data.splice(lng, this.data.length);
+      return this;
+    }
+  }, {
+    key: "then",
+    value: function then(cb) {
+      cb(this.data);
+      return this;
     }
   }]);
 
   return LilQL;
 }();
 
-var _default = LilQL;
+var _default = LilQL; // except (key, val) {
+//   return new Promise((resolve, reject) => {
+//     this.temp = this.data
+//     this.each((obj, i) => {
+//       const str = obj[key].toLowerCase()
+//       if (str.includes(val)) this.temp.splice(i, 1)
+//     })
+//     resolve(this.temp)
+//     this.reset()
+//   })
+// }
+
 exports.default = _default;
 },{}],"index.js":[function(require,module,exports) {
 "use strict";
@@ -226,7 +198,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var data = [{
   'name': 'Portia Zamora',
-  'age': 48,
+  'age': 62,
   'city': 'Morkhoven'
 }, {
   'name': 'Rahim Wiggins',
@@ -246,7 +218,7 @@ var data = [{
   'city': 'Sant Onofrio'
 }, {
   'name': 'Ava Stark',
-  'age': 60,
+  'age': 62,
   'city': 'Colombo'
 }, {
   'name': 'Noelani Gibson',
@@ -254,7 +226,7 @@ var data = [{
   'city': 'Pittsburgh'
 }, {
   'name': 'Gisela Sykes',
-  'age': 61,
+  'age': 62,
   'city': 'Caramanico Terme'
 }, {
   'name': 'Maggy Skinner',
@@ -297,17 +269,18 @@ var people = new _index.default(data); // people
 //   .catch(err => {
 //     throw new Error(err)
 //   })
+// people
+//   .sort('age', 'asc')
+//   .then(result => {
+//     console.log(result)
+//   })
+//   .catch(err => {
+//     throw new Error(err)
+//   })
 
-people.sort('age', 'asc').then(function (result) {
-  console.log(result);
-}).catch(function (err) {
-  throw new Error(err);
-});
-people.limit(5).then(function (result) {
-  console.log(result);
-}).catch(function (err) {
-  throw new Error(err);
-});
+people.includes('name', 'jo').orderBy('age', 'asc').limit(2).then(function (res) {
+  console.log(res);
+}); // console.log(sorted)
 },{"./../src/index.js":"../src/index.js"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -335,7 +308,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62481" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51587" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

@@ -1,8 +1,6 @@
 class LilQL {
   constructor (data) {
     this.data = data
-    this.temp = []
-
     return this
   }
 
@@ -10,50 +8,42 @@ class LilQL {
     this.data.forEach((obj, i) => cb(obj, i))
   }
 
-  reset () {
-    this.temp = []
-  }
-
   where (key, val) {
-    return new Promise((resolve, reject) => {
-      this.each(obj => {
-        if (obj[key] === val) this.temp.push(obj)
-      })
-      resolve(this.temp)
-      this.reset()
-    })
+    this.data = this.data.filter(obj => obj[key] === val)
+    return this
   }
 
   includes (key, val) {
-    return new Promise(resolve => {
-      this.each(obj => {
-        const str = obj[key].toLowerCase()
-        if (str.includes(val)) this.temp.push(obj)
-      })
-      resolve(this.temp)
-      this.reset()
-    })
+    this.data = this.data.filter(obj => obj[key].toLowerCase().indexOf(val) >= 0)
+    return this
   }
 
-  except (key, val) {
-    return new Promise((resolve, reject) => {
-      this.temp = this.data
-      this.each(obj => {
-        const str = obj[key].toLowerCase()
-        if (str.includes(val)) this.temp.splice(i, 1)
-      })
-      resolve(this.temp)
-      this.reset()
-    })
-  }
-
-  sort (key, val) {
-    return new Promise(resolve => resolve(this.data.sort((a, b) => val === 'asc' ? (a[key] - b[key]) : (b[key] - a[key]))))
+  orderBy (key, val) {
+    this.data.sort((a, b) => val === 'asc' ? (a[key] - b[key]) : (b[key] - a[key]))
+    return this
   }
 
   limit (lng) {
-    return new Promise(resolve => resolve(this.data.slice(0, lng)))
+    this.data.splice(lng, this.data.length)
+    return this
+  }
+
+  then (cb) {
+    cb(this.data)
+    return this
   }
 }
 
 export default LilQL
+
+// except (key, val) {
+//   return new Promise((resolve, reject) => {
+//     this.temp = this.data
+//     this.each((obj, i) => {
+//       const str = obj[key].toLowerCase()
+//       if (str.includes(val)) this.temp.splice(i, 1)
+//     })
+//     resolve(this.temp)
+//     this.reset()
+//   })
+// }
