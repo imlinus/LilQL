@@ -20,5 +20,7 @@ people
 - `where` = exact match
 - `includes` = string includes
 - `except` = everything but
+- `sort` = asc or desc
+- `limit` = any number
 
 Insperation from https://github.com/eko3alpha/JSQL, but I wanted promises
