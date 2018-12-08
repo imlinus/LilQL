@@ -22,7 +22,8 @@ const data = [
 const people = new LilQL(data)
 
 people
-  .where('age', 62)
+  .includes('name', 'jo')
+  .orderBy('age', 'asc')
   .limit(2)
   .then(result => {
     console.log(result)
