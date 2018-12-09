@@ -1,6 +1,8 @@
 # LilQL
 
-I'm just playing around like usual :P
+A friend of mine needed to filter some arrays, it got me an idea..
+And since I'm just playing around like usual :P This is what came out of it.
+It does work tho, so modify it and have fun =)
 
 ### Example
 ```js
@@ -37,6 +39,7 @@ people
 - `orderBy` = asc or desc
 - `limit` = any number
 
-Insperation from https://github.com/eko3alpha/JSQL, but this one is like `700 bytes`
+Insperation commes from https://github.com/eko3alpha/JSQL,
+But this one is like `700 bytes`. So you really can't compare the two.
 
 Cheers
