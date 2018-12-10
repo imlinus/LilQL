@@ -39,7 +39,7 @@ people
 - `orderBy` = asc or desc
 - `limit` = any number
 
-Insperation commes from https://github.com/eko3alpha/JSQL,
+Insperation comes from https://github.com/eko3alpha/JSQL,
 But this one is like `700 bytes`. So you really can't compare the two.
 
 Cheers
