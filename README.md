@@ -1,8 +1,9 @@
-# LilQL
+# 🔍✂️ LilQL
 
 A friend of mine needed to filter some arrays, it got me an idea..
-And since I'm just playing around like usual :P This is what came out of it.
-It does work tho, so modify it and have fun =)
+And since I'm just playing around like usual :P
+Well.. This is what came out of it.
+It does work though, so modify it and have fun =)
 
 ### Example
 ```js
