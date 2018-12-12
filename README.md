@@ -36,8 +36,7 @@ people
 [
   { 'name': 'Jocelyn Weeks', 'age': 28, 'city': 'Sant Onofrio' },
   { 'name': 'Raven Jordan', 'age': 32, 'city': 'Atlanta' },
-  { 'name': 'Jordan Holden', 'age': 40, 'city': 'Holman' },
-  { 'name': 'Jack Gilbert', 'age': 55, 'city': 'Parkland County' }
+  { 'name': 'Jordan Holden', 'age': 40, 'city': 'Holman' }
 ]
 */
 
